@@ -13,16 +13,16 @@ export default function Login() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
-    const { authUser, isLoading } = useAuth();
+    const { authUser, isloading } = useAuth();
 
     const router = useRouter();
 
 
     useEffect(()=>{
-        if(!isLoading && authUser) {
+        if(!isloading && authUser) {
             router.push("/");
         }
-    },[authUser, isLoading])
+    },[authUser, isloading])
 
 
     const loginHandler = async()=>{
@@ -39,7 +39,7 @@ export default function Login() {
         }
 
 
-    return (
+    return isloading || (!isloading && authUser) ? (<Loader/>) :  (
     <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
             {/* <Loader/> */}
             <div className="w-[30%]">

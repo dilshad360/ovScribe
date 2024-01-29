@@ -7,20 +7,22 @@ import { auth } from "../firebase/config";
 import { useAuth } from "../firebase/auth";
 import Loader from "@/components/loader";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import writeImage from "@/components/assets/writing.png";
 
 export default function Signup() {
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    const { authUser, isLoading, setAuthUser } = useAuth();
+    const { authUser, isloading, setAuthUser } = useAuth();
 
     const router = useRouter();
 
     useEffect(() => {
-        if (!isLoading && authUser) {
+        if (!isloading && authUser) {
             router.push("/");
         }
-    }, [authUser, isLoading]);
+    }, [authUser, isloading]);
 
     const signupHandler = async () => {
         if (!username || !email || !password) return;
@@ -44,12 +46,13 @@ export default function Signup() {
         }
     };
 
-    return  isLoading || (!isLoading && authUser) ? (
+    return  isloading || (!isloading && authUser) ? (
         <Loader />
     ) : (
-        <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
-            <div className="w-[30%]">
-                <h2 className="text-3xl font-bold mb-10">Sign up</h2>
+        <main className="flex min-h-screen flex-row justify-center items-center gap-16  py-24 ">
+            <Image className="hidden md:flex" src={writeImage}  width={360} />
+            <div className="w-[80%] md:w-1/3">
+                <h2 className="text-6xl font-bold mb-10">Sign up</h2>
                 <form
                     className="flex flex-col gap-3"
                     onSubmit={(e) => {
@@ -58,7 +61,6 @@ export default function Signup() {
                 >
                     <Label>Username</Label>
                     <Input
-                        placeholder="Enter your username"
                         type="text"
                         required
                         onChange={(e) => {
@@ -67,7 +69,6 @@ export default function Signup() {
                     ></Input>
                     <Label>Email</Label>
                     <Input
-                        placeholder="Enter your email"
                         type="email"
                         required
                         onChange={(e) => {
@@ -76,7 +77,6 @@ export default function Signup() {
                     ></Input>
                     <Label>Password</Label>
                     <Input
-                        placeholder="Enter your password"
                         type="password"
                         required
                         onChange={(e) => {
