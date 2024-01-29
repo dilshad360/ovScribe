@@ -8,7 +8,9 @@ import { useAuth } from "../firebase/auth";
 import Loader from "@/components/loader";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { toast } from "sonner"
 import writeImage from "@/components/assets/writing.png";
+
 
 export default function Signup() {
     const [username, setUsername] = useState(null);
@@ -41,8 +43,10 @@ export default function Signup() {
                 username,
             });
             console.log(user)
-        } catch (err) {
-            console.log("error found", err);
+        } catch (error) {
+            console.log("error found", error)
+            const message = JSON.parse(JSON.stringify(error))
+            toast.error(message.code.replace(/^auth\//, "").replace(/-/g, " "))
         }
     };
 

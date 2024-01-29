@@ -7,6 +7,8 @@ import { auth } from "../firebase/config";
 import Loader from "@/components/loader";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../firebase/auth";
+import { toast } from "sonner"
+
 
 export default function Login() {
 
@@ -26,15 +28,13 @@ export default function Login() {
 
 
     const loginHandler = async()=>{
-        console.log("ss")
         if(!email || !password) return;
         try {
             const user = await signInWithEmailAndPassword(auth, email, password )
-            console.log(user)
         } catch (error) {
-            // console.log("error found", error)
+            console.log("error found", error)
             const message = JSON.parse(JSON.stringify(error))
-            // toast.error(message.code.replace(/^auth\//, ""))
+            toast.error(message.code.replace(/^auth\//, "").replace(/-/g, " "))
         }
         }
 
