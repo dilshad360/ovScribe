@@ -14,7 +14,9 @@ const NavBar = () => {
 
   return (
     <div className="flex flex-row justify-between items-center gap-2 py-1 px-6">
+      <Link href="/">
       <h3 className="text-3xl font-bold">ovScribe</h3>
+      </Link>
       <div>
         <div className="flex flex-row gap-3 m-4">
           {authUser ? (

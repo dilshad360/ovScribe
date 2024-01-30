@@ -54,7 +54,7 @@ export default function Signup() {
         <Loader />
     ) : (
         <main className="flex min-h-screen flex-row justify-center items-center gap-16  py-24 ">
-            <Image className="hidden md:flex" src={writeImage}  width={360} />
+            <Image className="hidden md:flex" src={writeImage}  width={360} alt="write image" />
             <div className="w-[80%] md:w-1/3">
                 <h2 className="text-6xl font-bold mb-10">Sign up</h2>
                 <form

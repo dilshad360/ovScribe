@@ -6,7 +6,7 @@ const Loader = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#f8f7f4] ">
       <div className="relative flex justify-center items-center w-60 h-60 ">
-        <Image src={LoaderGif}  ></Image>
+        <Image src={LoaderGif} alt="loading image"  ></Image>
       </div>
     </div>
   );
