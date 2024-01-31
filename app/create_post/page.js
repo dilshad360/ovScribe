@@ -3,9 +3,10 @@
 import NavBar from "@/components/NavBar"
 import { Button, Input, Label, Textarea } from "@/components/ui";
 import { useEffect, useState } from "react";
-import { db } from "../firebase/config";
+import { db, storage } from "../firebase/config";
 import { useAuth } from "../firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader";
@@ -19,6 +20,7 @@ export default function createPost() {
 
     const [title, setTitle] = useState(null)
     const [content, setContent] = useState(null)
+    const [thumbnail, setThumbnail] = useState(null)
 
     const router = useRouter();
 
@@ -32,10 +34,21 @@ export default function createPost() {
     const sumbitHander = async() => {
         if (!title && !content) return
         try{
+
+            // Upload image to Firebase Storage
+        let thumbnailURL = "";
+        if (thumbnail) {
+        const storageRef = ref(storage, `thumbnails/${thumbnail.name}`);
+        await uploadBytes(storageRef, thumbnail);
+        thumbnailURL = await getDownloadURL(storageRef);
+        }
+
+
             const docRef = await addDoc(collection(db, "posts"), {
                 owner: authUser.uid,
                 title: title,
                 content: content,
+                thumbnailUrl: thumbnailURL,
                 createdAt: serverTimestamp(), 
                 });
 
@@ -44,6 +57,11 @@ export default function createPost() {
             console.error(error)
     }
 }
+
+// const handleThumbnailChange = (e) => {
+//     const file = e.target.files[0];
+//     setImage(file);
+// }
 
 
 return  isloading || (!isloading && !authUser) ? (
@@ -57,7 +75,10 @@ return  isloading || (!isloading && !authUser) ? (
             <form className="flex flex-col gap-3" onSubmit={(e) => {
                 e.preventDefault();
             }}>
-                
+                <Label>Thumbnail</Label>
+                <Input type="file" accept="image/*" onChange={(e)=>{
+                    setThumbnail(e.target.files[0]);
+                }} />
                 <Label>Title</Label>
                 <Input type="text" required onChange={(e) => {
                     setTitle(e.target.value);
