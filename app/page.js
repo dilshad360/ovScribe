@@ -40,17 +40,17 @@ const fetchPosts = async () => {
     <NavBar/>
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-4xl font-bold opacity-45">Posts</h1>
-      <div>
+      <div className="flex flex-col">
 
       {allPosts.length > 0 &&
           allPosts.map((post, index) => (
-            <>
-            <p>{post.title}</p>
+            <div className="flex justify-between border-t-2 p-2 w-[800px]">
+
+            <h2 className="text-xl font-semibold">{post.title}</h2>
           
-            <Image src={post.thumbnailUrl} width={300} height={300}/>
-
-
-            </>
+            <Image className="w-40 m-2 h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
+            
+            </div>
           ))
         }
         
