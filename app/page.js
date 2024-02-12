@@ -8,6 +8,8 @@ import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "./firebase/config";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 
 export default function Home() {
@@ -15,6 +17,8 @@ export default function Home() {
   const { authUser, isloading, signOut } = useAuth();
 
   const [allPosts, setAllPosts] = useState([]);
+
+  const router = useRouter();
 
 
   useEffect(()=>{
@@ -39,16 +43,19 @@ const fetchPosts = async () => {
     <>
     <NavBar/>
     <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-4xl font-bold opacity-45">Posts</h1>
+      <h1 className="text-4xl font-bold opacity-45 mb-5">Posts</h1>
       <div className="flex flex-col">
 
       {allPosts.length > 0 &&
           allPosts.map((post, index) => (
             <div className="flex justify-between border-t-2 p-2 w-[800px]">
 
-            <h2 className="text-xl font-semibold">{post.title}</h2>
+            <div className="cursor-pointer" onClick={()=>{router.push(`/post/${post.slug}`);}}>
+            <h2 className="text-xl font-semibold " >{post.title}</h2>
+            <p className="mt-3  text-muted-foreground">{post.content.substring(0, 150) + '...'}</p>
+            </div>
           
-            <Image className="w-40 m-2 h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
+            <Image className="min-w-40 m-2 h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
             
             </div>
           ))

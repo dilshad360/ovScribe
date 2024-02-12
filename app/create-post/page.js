@@ -10,10 +10,12 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader";
+import slugify from "slugify";
+import withAuth from "../middleware/auth";
 
 
 
-export default function createPost() {
+ function createPost() {
 
 
     const { authUser, isloading } = useAuth();
@@ -22,15 +24,6 @@ export default function createPost() {
     const [content, setContent] = useState(null)
     const [thumbnail, setThumbnail] = useState(null)
     const [thumbnailPreview, setThumbnailPreview] = useState(null);
-
-    const router = useRouter();
-
-
-    useEffect(() => {
-        if (!isloading && !authUser) {
-            router.push("/");
-        }
-    }, [authUser, isloading])
 
     const sumbitHander = async () => {
         if (!title && !content) return
@@ -44,10 +37,17 @@ export default function createPost() {
                 thumbnailURL = await getDownloadURL(storageRef);
             }
 
+            // Generate slug from title
+            const slug = slugify(title, {
+                lower: true,    // Convert to lowercase
+                strict: true    // Remove special characters
+            });
+
 
             const docRef = await addDoc(collection(db, "posts"), {
                 owner: authUser.uid,
                 title: title,
+                slug: slug,
                 content: content,
                 thumbnailUrl: thumbnailURL,
                 createdAt: serverTimestamp(),
@@ -68,9 +68,7 @@ export default function createPost() {
     };
 
 
-    return isloading || (!isloading && !authUser) ? (
-        <Loader />
-    ) : (
+    return  (
         <>
             <NavBar />
             <main className="flex min-h-screen flex-row justify-center items-center  py-10 ">
@@ -101,3 +99,5 @@ export default function createPost() {
         </>
     )
 }
+
+export default withAuth(createPost)

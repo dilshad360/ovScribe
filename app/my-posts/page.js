@@ -10,10 +10,11 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { Button } from "@/components/ui";
 import { Trash } from "lucide-react";
 import { toast } from "sonner";
+import withAuth from "../middleware/auth";
 
 
 
-export default function Login() {
+function MyPosts() {
 
     const { authUser, isloading, signOut } = useAuth();
 
@@ -95,3 +96,5 @@ export default function Login() {
         </>
     );
 }
+
+export default withAuth(MyPosts)
