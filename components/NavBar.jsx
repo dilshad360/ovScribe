@@ -23,7 +23,9 @@ const NavBar = () => {
         <div className="flex flex-row gap-3 m-4">
           {authUser ? (
             <>
-              <p>user : {authUser.email}</p>
+              <Link href="/my-posts">
+                <Button variant="link" className="font-semibold">My Posts</Button>
+              </Link>
               <Link href="/create-post">
                 <Button variant="outline"> <SquarePen className="mr-1 w-4" /> Write</Button>
               </Link>

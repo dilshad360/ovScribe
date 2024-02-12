@@ -44,19 +44,20 @@ const fetchPosts = async () => {
     <NavBar/>
     <main className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-4xl font-bold opacity-45 mb-5">Posts</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-center items-center">
 
       {allPosts.length > 0 &&
           allPosts.map((post, index) => (
-            <div className="flex justify-between border-t-2 p-2 w-[800px]">
+            <div className="flex justify-between border-t-2 p-4 w-4/6">
 
-            <div className="cursor-pointer" onClick={()=>{router.push(`/post/${post.slug}`);}}>
+            <div className="cursor-pointer w-9/12" onClick={()=>{router.push(`/post/${post.slug}`);}}>
             <h2 className="text-xl font-semibold " >{post.title}</h2>
-            <p className="mt-3  text-muted-foreground">{post.content.substring(0, 150) + '...'}</p>
+            <p className="mt-3  text-muted-foreground">{post.summary + '...'}</p>
             </div>
+            <div className="w-3/12">
           
-            <Image className="min-w-40 m-2 h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
-            
+            <Image className="min-w-40  h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
+            </div>
             </div>
           ))
         }

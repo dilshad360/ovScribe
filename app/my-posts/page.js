@@ -8,9 +8,11 @@ import { db } from "../firebase/config";
 import Image from "next/image";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui";
-import { Trash } from "lucide-react";
+import { Eye, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
 import withAuth from "../middleware/auth";
+import { useRouter } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 
 
 
@@ -19,6 +21,8 @@ function MyPosts() {
     const { authUser, isloading, signOut } = useAuth();
 
     const [posts, setPosts] = useState([]);
+
+    const router = useRouter();
 
     useEffect(() => {
         if (!!authUser) {
@@ -60,7 +64,6 @@ function MyPosts() {
 
                 <div className="flex">
                     <Table className="">
-                        <TableCaption>A list of my posts</TableCaption>
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="">Title</TableHead>
@@ -74,15 +77,21 @@ function MyPosts() {
                                 posts.map((post, index) => (
                                     <TableRow key={index}>
                                         <TableCell> {post.title} </TableCell>
-                                        <TableCell className="p-0">
+                                        <TableCell className="p-0 flex items-center justify-center">
                                             <Image className="w-12 m-2 h-8 object-cover rounded-md" src={post.thumbnailUrl} width={100} height={100} />
                                         </TableCell>
                                         <TableCell>
-
+                                        <Badge variant="outline">{post.status}</Badge>
                                         </TableCell>
-                                        <TableCell className="p-0 text-center">
-                                            <Button variant="ghost" className="" size="icon" onClick={()=> deletePost(post.id)} >
+                                        <TableCell className="p-0 ">
+                                            <Button variant="ghost" size="icon" onClick={()=> deletePost(post.id)} >
                                                 <Trash className="h-4 w-4 text-red-600" />
+                                            </Button>
+                                            <Button variant="ghost"  size="icon" disabled  >
+                                                <Pencil className="h-4 w-4 " />
+                                            </Button>
+                                            <Button variant="ghost" size="icon" onClick={()=> {router.push(`/post/${post.slug}`);}} >
+                                                <Eye className="h-4 w-4" />
                                             </Button>
                                         </TableCell>
                                     </TableRow>
