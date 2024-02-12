@@ -43,7 +43,7 @@ const fetchPosts = async () => {
     <>
     <NavBar/>
     <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-4xl font-bold opacity-45 mb-5">Posts</h1>
+      <h1 className="text-4xl font-bold  mb-5">Posts</h1>
       <div className="flex flex-col justify-center items-center">
 
       {allPosts.length > 0 &&
@@ -55,7 +55,6 @@ const fetchPosts = async () => {
             <p className="mt-3  text-muted-foreground">{post.summary + '...'}</p>
             </div>
             <div className="w-3/12">
-          
             <Image className="min-w-40  h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
             </div>
             </div>

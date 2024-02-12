@@ -30,9 +30,17 @@ export default function Page({ params }) {
     return (
         <div>
             <NavBar />
-            {post < 0 && <div>
+            <main className="flex min-h-screen flex-col items-center p-24">
+            { post.length > 0 && ( <div className="px-64">
+                
                 <h3 className="text-3xl font-semibold">{post[0].title}</h3>
-            </div>}
+                <div
+                className="pt-6"
+                    dangerouslySetInnerHTML={{__html: post[0].content}}
+                />
+
+            </div>)}
+            </main>
         </div>
     );
 }
