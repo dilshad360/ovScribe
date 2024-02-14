@@ -1,3 +1,7 @@
 
 .ql-container.ql-snow{ border: none !important;}
 .ql-toolbar.ql-snow { border: none !important;}
+
+.ql-container{
+    height: 360px;
+}

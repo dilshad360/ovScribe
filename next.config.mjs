@@ -6,6 +6,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "firebasestorage.googleapis.com",
             },
+            {
+                protocol: "https",
+                hostname: "lexica-serve-encoded-images.sharif.workers.dev",
+            },
         ],
     },
 };

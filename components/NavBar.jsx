@@ -10,9 +10,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 const NavBar = () => {
   const { authUser, isloading, signOut } = useAuth();
 
-  if (isloading) {
-    return <Loader />;
-  }
+  // if (isloading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className="flex flex-row justify-between items-center gap-2 py-1 px-6">

@@ -17,6 +17,11 @@ const withAuth = (WrappedComponent) => {
         }, [authUser, isloading])
 
 
+        // return (
+        //     <WrappedComponent {...props} />
+        // )
+
+
         return isloading || (!isloading && !authUser) ? (
             <Loader />
         ) : (
