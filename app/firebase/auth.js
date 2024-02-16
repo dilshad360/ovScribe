@@ -2,7 +2,8 @@
 
 const { createContext, useContext, useState, useEffect } = require("react");
 import { onAuthStateChanged, signOut as authSignOut } from "firebase/auth";
-import { auth } from "./config";
+import { auth, db } from "./config";
+import { doc, getDoc } from "firebase/firestore";
 
 const AuthUserContext = createContext({
     authUser: null,
@@ -25,10 +26,15 @@ export default function useFirebaseAuth() {
             clear();
             return;
         }
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+
         setAuthUser({
             uid: user.uid,
             email: user.email,
             username: user.displayName,
+            phoneNumber: userDoc.data().phoneNumber,
+            role: userDoc.data().role
         });
         setIsLoading(false);
     };

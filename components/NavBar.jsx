@@ -10,9 +10,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 const NavBar = () => {
   const { authUser, isloading, signOut } = useAuth();
 
-  // if (isloading) {
-  //   return <Loader />;
-  // }
+  if (isloading) {
+    return <Loader />;
+  }
 
   return (
     <div className="flex flex-row justify-between items-center gap-2 py-1 px-6">
@@ -34,7 +34,9 @@ const NavBar = () => {
               </Button>
               <Avatar>
                 <AvatarImage src="" />
+                {authUser.username && (
                 <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback>
+                )}
               </Avatar>
             </>
           ) : (
