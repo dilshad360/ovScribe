@@ -4,11 +4,14 @@ import Link from "next/link";
 import { Button } from "./ui";
 import { useAuth } from "@/app/firebase/auth";
 import Loader from "./loader";
-import { SquarePen, UserRound } from "lucide-react";
+import { LogOut, SquarePen, UserRound, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState } from "react";
 
 const NavBar = () => {
+
   const { authUser, isloading, signOut } = useAuth();
+  const [showProfilePanel, setShowProfilePanel] = useState(false);
 
   if (isloading) {
     return <Loader />;
@@ -29,15 +32,57 @@ const NavBar = () => {
               <Link href="/create-post">
                 <Button variant="outline"> <SquarePen className="mr-1 w-4" /> Write</Button>
               </Link>
-              <Button variant="destructive" onClick={signOut}>
-                Sign out
-              </Button>
-              <Avatar>
-                <AvatarImage src="" />
-                {authUser.username && (
-                <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback>
-                )}
-              </Avatar>
+
+              <div>
+
+                <Avatar className="cursor-pointer hover:shadow-md hover:scale-105 transition-all ease-in-out" onClick={() => { setShowProfilePanel(!showProfilePanel) }} >
+                  <AvatarImage src="" />
+                  {authUser.username && (
+                    <>
+                      { !showProfilePanel ?  
+                      <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback> :
+                      <AvatarFallback className="bg-black border font-semibold text-white" >< X /></AvatarFallback>
+                    }
+                    </>
+                  )}
+                </Avatar>
+
+                {showProfilePanel &&
+                  <div className="w-[280px] bg-white absolute right-0 my-2 mx-10 rounded-xl shadow-lg border-2 flex justify-between items-center px-4 py-2 flex-col">
+                    <div className="flex  justify-end w-full">
+                    </div>
+                    <div className="flex flex-col items-center pt-6">
+                      <Avatar className="scale-150" >
+                        <AvatarImage src="" />
+                        {authUser.username && (
+                          <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        )}
+                      </Avatar>
+                      <div className="flex flex-col items-center pt-4">
+                        <span className="text-sm font-semibold">{authUser.username}</span>
+                        <span className="text-xs text-gray-500" >{authUser.email}</span>
+                      </div>
+                    </div>
+                    <div className="w-full py-4 space-y-2 ">
+                      {/* <Button className="w-full" variant="ghost" >
+                        Manage posts
+                      </Button>
+                      <Button className="w-full" variant="ghost" >
+                        Manage users
+                      </Button>
+                      <Button className="w-full" variant="ghost" >
+                        Settings
+                      </Button> */}
+                      <Button className="w-full text-red-600 border-red-600 hover:text-red-700 " variant="outline" onClick={signOut}>
+                        <LogOut/>
+                      </Button>
+                    </div>
+
+                  </div>
+                }
+
+
+              </div>
             </>
           ) : (
             <>
