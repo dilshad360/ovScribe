@@ -7,6 +7,7 @@ import Loader from "./loader";
 import { LogOut, SquarePen, UserRound, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react";
+import { Badge } from "./ui/badge";
 
 const NavBar = () => {
 
@@ -26,10 +27,10 @@ const NavBar = () => {
         <div className="flex flex-row gap-3 m-4">
           {authUser ? (
             <>
-              <Link href="/my-posts">
+              <Link href="/user/my-posts">
                 <Button variant="link" className="font-semibold">My Posts</Button>
               </Link>
-              <Link href="/create-post">
+              <Link href="/user/create-post">
                 <Button variant="outline"> <SquarePen className="mr-1 w-4" /> Write</Button>
               </Link>
 
@@ -39,10 +40,10 @@ const NavBar = () => {
                   <AvatarImage src="" />
                   {authUser.username && (
                     <>
-                      { !showProfilePanel ?  
-                      <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback> :
-                      <AvatarFallback className="bg-black border font-semibold text-white" >< X /></AvatarFallback>
-                    }
+                      {!showProfilePanel ?
+                        <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback> :
+                        <AvatarFallback className="bg-black border font-semibold text-white" >< X /></AvatarFallback>
+                      }
                     </>
                   )}
                 </Avatar>
@@ -58,23 +59,30 @@ const NavBar = () => {
                           <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback>
                         )}
                       </Avatar>
-                      <div className="flex flex-col items-center pt-4">
-                        <span className="text-sm font-semibold">{authUser.username}</span>
-                        <span className="text-xs text-gray-500" >{authUser.email}</span>
+                      <div className="flex flex-col items-center pt-4 ">
+                        <span className="text-lg font-semibold">{authUser.username}</span>
+                        <span className="text-xs text-gray-500 pb-1" >{authUser.email}</span>
+                        {authUser.role !== "user" &&
+                          <Badge variant="outline">{authUser.role.toUpperCase()}</Badge>
+                        }
                       </div>
                     </div>
                     <div className="w-full py-4 space-y-2 ">
                       {/* <Button className="w-full" variant="ghost" >
                         Manage posts
-                      </Button>
-                      <Button className="w-full" variant="ghost" >
-                        Manage users
-                      </Button>
-                      <Button className="w-full" variant="ghost" >
+                      </Button> */}
+                      {authUser.role === "admin" &&
+                        <Link href="/manage/users">
+                          <Button className="w-full" variant="ghost" >
+                            Manage users
+                          </Button>
+                        </Link>
+                      }
+                      {/* <Button className="w-full" variant="ghost" >
                         Settings
                       </Button> */}
                       <Button className="w-full text-red-600 border-red-600 hover:text-red-700 " variant="outline" onClick={signOut}>
-                        <LogOut/>
+                        <LogOut />
                       </Button>
                     </div>
 
@@ -86,10 +94,10 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Link href="/login">
+              <Link href="/auth/login">
                 <Button variant="ghost">Log in</Button>
               </Link>
-              <Link href="/signup">
+              <Link href="/auth/signup">
                 <Button>Sign up</Button>
               </Link>
             </>

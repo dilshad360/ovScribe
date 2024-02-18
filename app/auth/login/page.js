@@ -3,10 +3,10 @@
 import { Button, Input, Label } from "@/components/ui";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth } from "../firebase/config";
+import { auth } from "../../firebase/config";
 import Loader from "@/components/loader";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../firebase/auth";
+import { useAuth } from "../../firebase/auth";
 import { toast } from "sonner"
 import fastImage from "@/components/assets/fast.png"
 import Image from "next/image";

@@ -3,14 +3,14 @@
 import NavBar from "@/components/NavBar";
 import { Button, Input, Label, Textarea } from "@/components/ui";
 import { useEffect, useState } from "react";
-import { db, storage } from "../firebase/config";
-import { useAuth } from "../firebase/auth";
+import { db, storage } from "../../firebase/config";
+import { useAuth } from "../../firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
-import withAuth from "../middleware/auth";
+import withAuth from "../../middleware/auth";
 import ReactQuill from "react-quill";
 import { fetchImages } from "@/utils/lexica";
 import Image from "next/image";
@@ -64,7 +64,7 @@ function createPost() {
                 createdAt: serverTimestamp(),
             });
             toast.success("Successfully submitted");
-            router.push("/my-posts");
+            router.push("/user/my-posts");
         } catch (error) {
             console.error(error);
         }

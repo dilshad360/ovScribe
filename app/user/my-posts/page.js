@@ -2,15 +2,15 @@
 
 import NavBar from "@/components/NavBar";
 import { useEffect, useState } from "react";
-import { useAuth } from "../firebase/auth";
+import { useAuth } from "../../firebase/auth";
 import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase/config";
+import { db } from "../../firebase/config";
 import Image from "next/image";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui";
 import { Eye, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
-import withAuth from "../middleware/auth";
+import withAuth from "../../middleware/auth";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 
@@ -61,7 +61,6 @@ function MyPosts() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center   gap-16 py-24 ">
                 <h4 className="text-2xl font-semibold">My Posts</h4>
-
                 <div className="flex">
                     <Table className="">
                         <TableHeader>

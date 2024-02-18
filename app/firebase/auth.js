@@ -29,13 +29,28 @@ export default function useFirebaseAuth() {
 
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
-        setAuthUser({
-            uid: user.uid,
-            email: user.email,
-            username: user.displayName,
-            phoneNumber: userDoc.data().phoneNumber,
-            role: userDoc.data().role
-        });
+        // setAuthUser({
+        //     uid: user.uid,
+        //     email: user.email,
+        //     username: user.displayName,
+        //     phoneNumber: userDoc.data().phoneNumber,
+        //     role: userDoc.data().role
+        // });
+
+
+        if (userDoc.exists()) {
+            setAuthUser({
+                uid: user.uid,
+                email: user.email,
+                username: user.displayName,
+                phoneNumber: userDoc.data().phoneNumber,
+                role: userDoc.data().role
+            });
+        } else {
+            // Handle the case when user data doesn't exist
+            console.error("User data not found");
+        }
+
         setIsLoading(false);
     };
 

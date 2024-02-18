@@ -3,8 +3,8 @@
 import { Input, Button, Label } from "@/components/ui";
 import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, db } from "../firebase/config";
-import { useAuth } from "../firebase/auth";
+import { auth, db } from "../../firebase/config";
+import { useAuth } from "../../firebase/auth";
 import Loader from "@/components/loader";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
