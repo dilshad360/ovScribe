@@ -18,7 +18,7 @@ function ManageUsers() {
     const { authUser } = useAuth();
     const [users, setUsers] = useState([])
 
-    const roles = ["user", "admin", "approver"]
+    const roles = ["user", "approver", "admin",]
 
     useEffect(() => {
         if (!!authUser) {
@@ -59,14 +59,14 @@ function ManageUsers() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center   gap-16 py-24 ">
                 <h4 className="text-2xl font-semibold">All Users</h4>
-                <div className="flex">
-                    <Table className="">
+                <div className="flex shadow-md rounded-md w-1/2">
+                    <Table>
                         <TableHeader>
                             <TableRow>
                                 <TableHead>Username</TableHead>
                                 <TableHead>Email</TableHead>
                                 <TableHead>Phone Number</TableHead>
-                                <TableHead>Role</TableHead>
+                                <TableHead  className="w-[150px]" >Role</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -83,13 +83,13 @@ function ManageUsers() {
                                         <TableCell> {user.email} </TableCell>
                                         <TableCell> {user.phoneNumber} </TableCell>
                                         <TableCell>
-                                            <Select onValueChange={(value)=>{changeRoleHandler(value, user.id)}} >
-                                                <SelectTrigger className="w-fit h-6 text-xs font-semibold">
+                                            <Select onValueChange={(value)=>{changeRoleHandler(value, user.id)}}   >
+                                                <SelectTrigger className="w-fit h-6 text-xs font-semibold rounded-2xl">
                                                     <SelectValue placeholder={user.role.toUpperCase()} />
                                                 </SelectTrigger>
-                                                <SelectContent>
+                                                <SelectContent className="rounded-2xl" >
                                                     {roles.map(role => (
-                                                        <SelectItem className="text-xs" value={role}>{role.toUpperCase()}</SelectItem>
+                                                        <SelectItem className="text-xs rounded-2xl" value={role}>{role.toUpperCase()}</SelectItem>
                                                     ))}
                                                 </SelectContent>
                                             </Select>

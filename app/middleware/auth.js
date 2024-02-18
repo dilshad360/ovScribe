@@ -5,24 +5,18 @@ import { useEffect } from "react";
 import { useAuth } from "../firebase/auth";
 import Loader from "@/components/loader";
 
-const withAuth = (WrappedComponent,  allowedRoles) => {
+const withAuth = (WrappedComponent, allowedRoles) => {
     const Auth = (props) => {
         const { authUser, isloading } = useAuth();
         const router = useRouter();
 
         useEffect(() => {
-            if (!isloading && (!authUser|| !allowedRoles.includes(authUser.role))) {
+            if (!isloading && (!authUser || (allowedRoles && !allowedRoles.includes(authUser.role)))) {
                 router.push("/");
             }
-        }, [authUser, isloading])
+        }, [authUser, isloading, allowedRoles])
 
-
-        // return (
-        //     <WrappedComponent {...props} />
-        // )
-
-
-        return isloading || (!isloading && (!authUser || !allowedRoles.includes(authUser.role))) ? (
+        return isloading || (!isloading && (!authUser || (allowedRoles && !allowedRoles.includes(authUser.role)))) ? (
             <Loader />
         ) : (
             <WrappedComponent {...props} />

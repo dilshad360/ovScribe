@@ -61,8 +61,8 @@ function MyPosts() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center   gap-16 py-24 ">
                 <h4 className="text-2xl font-semibold">My Posts</h4>
-                <div className="flex">
-                    <Table className="">
+                <div className="flex shadow-md rounded-md">
+                    <Table>
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="">Title</TableHead>
@@ -86,9 +86,9 @@ function MyPosts() {
                                             <Button variant="ghost" size="icon" onClick={()=> deletePost(post.id)} >
                                                 <Trash className="h-4 w-4 text-red-600" />
                                             </Button>
-                                            <Button variant="ghost"  size="icon" disabled  >
+                                            {/* <Button variant="ghost"  size="icon" disabled  >
                                                 <Pencil className="h-4 w-4 " />
-                                            </Button>
+                                            </Button> */}
                                             <Button variant="ghost" size="icon" onClick={()=> {router.push(`/post/${post.slug}`);}} >
                                                 <Eye className="h-4 w-4" />
                                             </Button>
