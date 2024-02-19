@@ -124,7 +124,7 @@ function createPost() {
             {/* Ai Search  */}
 
             {openAiImage && (
-                <div className="backdrop-blur-sm bg-black/40  fixed top-0 w-full h-full flex justify-center items-center ">
+                <div className="backdrop-blur-sm bg-black/40  fixed top-0 w-full h-full flex justify-center items-center z-10">
                     <div className="bg-white  shadow-md rounded-md px-5 py-6 text-center w-[740px]">
                         <div className="flex justify-between pb-2" >
                             <h3 className="text-2xl font-semibold" >Generate AI Image</h3>

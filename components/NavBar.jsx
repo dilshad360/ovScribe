@@ -68,9 +68,13 @@ const NavBar = () => {
                       </div>
                     </div>
                     <div className="w-full py-4 space-y-2 ">
-                      {/* <Button className="w-full" variant="ghost" >
-                        Manage posts
-                      </Button> */}
+                      {authUser.role !== "user" &&
+                        <Link href="/manage/posts">
+                          <Button className="w-full" variant="ghost" >
+                            Manage posts
+                          </Button>
+                        </Link>
+                      }
                       {authUser.role === "admin" &&
                         <Link href="/manage/users">
                           <Button className="w-full" variant="ghost" >
