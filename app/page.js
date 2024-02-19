@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useAuth } from "./firebase/auth";
 import NavBar from "@/components/NavBar";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "./firebase/config";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -27,7 +27,7 @@ export default function Home() {
 
 const fetchPosts = async () => {
   try {
-    const q = query(collection(db, "posts"));
+    const q = query(collection(db, "posts"), where("status", "==", "APPROVED"));
     const querySnapshot = await getDocs(q);
     let data = [];
     querySnapshot.forEach((doc) => {

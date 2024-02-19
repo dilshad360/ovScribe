@@ -10,6 +10,7 @@ import { useAuth } from "../../firebase/auth";
 import { toast } from "sonner"
 import fastImage from "@/components/assets/fast.png"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Login() {
 
@@ -44,7 +45,7 @@ export default function Login() {
     <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
             <div className="w-[30%]">
             <div className="flex justify-center items-end w-100">
-            <h2 className="text-6xl font-bold mb-10">Login</h2>
+            <h2 className="text-6xl font-bold mb-10">Login</h2>   
             <Image className="hidden md:flex" src={fastImage}  width={300} alt="write image" />
             </div>
             <form className="flex flex-col gap-3" onSubmit={(e) => {
@@ -58,6 +59,9 @@ export default function Login() {
                 <Input  type="password" required onChange={(e)=>{
                     setPassword(e.target.value);
                 }} ></Input>
+                <div className="flex justify-end text-sm text-gray-600 hover:text-gray-800">
+                    <Link href="/auth/forgot-password">Forgot password?</Link>
+                </div>
                 <Button className="mt-2" type="submit" onClick={loginHandler}  >Log in</Button>
             </form>
             </div>

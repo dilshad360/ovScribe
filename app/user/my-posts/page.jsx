@@ -8,7 +8,7 @@ import { db } from "../../firebase/config";
 import Image from "next/image";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui";
-import { Eye, Pencil, Trash } from "lucide-react";
+import { Eye, Inbox, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
 import withAuth from "../../middleware/auth";
 import { useRouter } from "next/navigation";
@@ -72,7 +72,7 @@ function MyPosts() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {posts.length > 0 &&
+                            {posts.length > 0 ? (
                                 posts.map((post, index) => (
                                     <TableRow key={index}>
                                         <TableCell> {post.title} </TableCell>
@@ -95,6 +95,12 @@ function MyPosts() {
                                         </TableCell>
                                     </TableRow>
                                 ))
+                            ) : (<TableRow  >
+                                <TableCell colspan="4" className="text-center text-base text-gray-400 italic p-10">
+                                <Inbox className="opacity-30" />
+                                Ready to share your thoughts with the world?
+                                </TableCell>
+                            </TableRow>)
                             }
                         </TableBody>
                     </Table>
