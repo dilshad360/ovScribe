@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui";
 import { useAuth } from "@/app/firebase/auth";
 import Loader from "./loader";
-import { LogOut, SquarePen, UserRound, X } from "lucide-react";
+import { LogOut, Settings, SquarePen, UserRound, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react";
 import { Badge } from "./ui/badge";
@@ -37,7 +37,7 @@ const NavBar = () => {
               <div>
 
                 <Avatar className="cursor-pointer hover:shadow-md hover:scale-105 transition-all ease-in-out" onClick={() => { setShowProfilePanel(!showProfilePanel) }} >
-                  <AvatarImage src="" />
+                  <AvatarImage src={authUser.profileImage} />
                   {authUser.username && (
                     <>
                       {!showProfilePanel ?
@@ -54,7 +54,7 @@ const NavBar = () => {
                     </div>
                     <div className="flex flex-col items-center pt-6">
                       <Avatar className="scale-150" >
-                        <AvatarImage src="" />
+                        <AvatarImage src={authUser.profileImage} />
                         {authUser.username && (
                           <AvatarFallback className="bg-white border font-semibold" >{authUser.username.substring(0, 2).toUpperCase()}</AvatarFallback>
                         )}
@@ -62,29 +62,32 @@ const NavBar = () => {
                       <div className="flex flex-col items-center pt-4 ">
                         <span className="text-lg font-semibold">{authUser.username}</span>
                         <span className="text-xs text-gray-500 pb-1" >{authUser.email}</span>
-                        {authUser.role !== "user" &&
+                        {authUser.role && authUser.role !== "user" &&
                           <Badge variant="outline">{authUser.role.toUpperCase()}</Badge>
                         }
                       </div>
                     </div>
                     <div className="w-full py-4 space-y-2 ">
-                      {authUser.role !== "user" &&
+                      {authUser.role && authUser.role !== "user" &&
                         <Link href="/manage/posts">
                           <Button className="w-full" variant="ghost" >
                             Manage posts
                           </Button>
                         </Link>
                       }
-                      {authUser.role === "admin" &&
+                      {authUser.role && authUser.role === "admin" &&
                         <Link href="/manage/users">
                           <Button className="w-full" variant="ghost" >
                             Manage users
                           </Button>
                         </Link>
                       }
-                      {/* <Button className="w-full" variant="ghost" >
+                      <Link href="/user/settings">
+                      <Button className="w-full" variant="ghost" >
+                        <Settings className="mr-1 scale-75 opacity-75" />
                         Settings
-                      </Button> */}
+                      </Button>
+                      </Link>
                       <Button className="w-full text-red-600 border-red-600 hover:text-red-700 " variant="outline" onClick={signOut}>
                         <LogOut />
                       </Button>

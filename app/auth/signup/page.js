@@ -51,7 +51,8 @@ export default function Signup() {
             email: user.email,
             username: username,
             phoneNumber: phoneNumber,
-            role: "user"
+            role: "user",
+            profileImage: ""
             })
 
             setAuthUser({

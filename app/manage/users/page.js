@@ -75,7 +75,7 @@ function ManageUsers() {
                                     <TableRow key={index}>
                                         <TableCell className="flex items-center gap-2 ">
                                             <Avatar>
-                                                <AvatarImage src="" />
+                                                <AvatarImage src={user.profileImage} />
                                                 <AvatarFallback className="bg-white border font-semibold" >{user.username.substring(0, 2).toUpperCase()}</AvatarFallback>
                                             </Avatar>
                                             <b>{user.username}</b>

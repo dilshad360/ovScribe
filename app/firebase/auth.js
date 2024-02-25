@@ -44,7 +44,8 @@ export default function useFirebaseAuth() {
                 email: user.email,
                 username: user.displayName,
                 phoneNumber: userDoc.data().phoneNumber,
-                role: userDoc.data().role
+                role: userDoc.data().role,
+                profileImage: userDoc.data().profileImage
             });
         } else {
             // Handle the case when user data doesn't exist
