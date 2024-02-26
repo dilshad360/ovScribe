@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
 import NavBar from "@/components/NavBar";
 import { Button, Input, Label, Textarea } from "@/components/ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { db, storage } from "../../firebase/config";
 import { useAuth } from "../../firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
@@ -17,11 +17,15 @@ import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 
 import "react-quill/dist/quill.snow.css";
-import "./quillEditor.css";
+import "@/styles/quillEditor.css";
 import { Sparkles, X } from "lucide-react";
 
+
+
+
+
 function createPost() {
-    const { authUser, isloading } = useAuth();
+    const { authUser } = useAuth();
 
     const [title, setTitle] = useState(null);
     const [summary, setSummary] = useState(null);
@@ -234,7 +238,7 @@ function createPost() {
                             onChange={(e) => {
                                 setSummary(e.target.value);
                             }}
-                            maxlength="150"
+                            maxLength="150"
                         />
 
                         <p className="text-sm text-muted-foreground pb-3">
