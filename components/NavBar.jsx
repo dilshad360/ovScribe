@@ -27,9 +27,7 @@ const NavBar = () => {
         <div className="flex flex-row gap-3 m-4">
           {authUser ? (
             <>
-              <Link href="/user/my-posts">
-                <Button variant="link" className="font-semibold">My Posts</Button>
-              </Link>
+
               <Link href="/user/create-post">
                 <Button variant="outline"> <SquarePen className="mr-1 w-4" /> Write</Button>
               </Link>
@@ -49,7 +47,7 @@ const NavBar = () => {
                 </Avatar>
 
                 {showProfilePanel &&
-                  <div className="w-[280px] bg-white absolute right-0 my-2 mx-10 rounded-xl shadow-lg border-2 flex justify-between items-center px-4 py-2 flex-col">
+                  <div className="w-[280px] bg-white absolute right-0 my-2 mx-10 rounded-xl shadow-lg border-2 flex justify-between items-center px-4 py-2 flex-col z-10">
                     <div className="flex  justify-end w-full">
                     </div>
                     <div className="flex flex-col items-center pt-6">
@@ -68,6 +66,11 @@ const NavBar = () => {
                       </div>
                     </div>
                     <div className="w-full py-4 space-y-2 ">
+                    <Link href="/user/my-posts">
+                          <Button className="w-full" variant="ghost" >
+                            My posts
+                          </Button>
+                        </Link>
                       {authUser.role && authUser.role !== "user" &&
                         <Link href="/manage/posts">
                           <Button className="w-full" variant="ghost" >

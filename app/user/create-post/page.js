@@ -176,7 +176,7 @@ function createPost() {
             {/* Ai Search  */}
 
             <main className="flex min-h-screen flex-row justify-center items-center  py-10 ">
-                <div className="w-[40%]">
+                <div className="w-[90%] md:w-[40%]">
                     <h2 className="text-3xl font-bold mb-10">Create post</h2>
                     <form
                         className="flex flex-col gap-3"

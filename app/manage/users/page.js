@@ -59,7 +59,7 @@ function ManageUsers() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center   gap-16 py-24 ">
                 <h4 className="text-2xl font-semibold">All Users</h4>
-                <div className="flex shadow-md rounded-md w-1/2">
+                <div className="flex shadow-md rounded-md w-11/12 md:w-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>

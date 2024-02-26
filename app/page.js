@@ -21,49 +21,48 @@ export default function Home() {
   const router = useRouter();
 
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchPosts();
-},[])
+  }, [])
 
-const fetchPosts = async () => {
-  try {
-    const q = query(collection(db, "posts"), where("status", "==", "APPROVED"));
-    const querySnapshot = await getDocs(q);
-    let data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ ...doc.data(), id: doc.id });
-    });
-    setAllPosts(data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+  const fetchPosts = async () => {
+    try {
+      const q = query(collection(db, "posts"), where("status", "==", "APPROVED"));
+      const querySnapshot = await getDocs(q);
+      let data = [];
+      querySnapshot.forEach((doc) => {
+        data.push({ ...doc.data(), id: doc.id });
+      });
+      setAllPosts(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
-    <NavBar/>
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-4xl font-bold  mb-5">Posts</h1>
-      <div className="flex flex-col justify-center items-center">
+      <NavBar />
+      <main className="flex min-h-screen flex-col items-center md:p-24">
+        <h1 className="text-4xl font-bold  mb-5">Posts</h1>
+        <div className="flex flex-col justify-center items-center">
 
-      {allPosts.length > 0 &&
-          allPosts.map((post, index) => (
-            <div className="flex justify-between border-t-2 p-4 w-4/6">
+          {allPosts.length > 0 &&
+            allPosts.map((post, index) => (
+              <div className="flex md:flex-row flex-col justify-between border-t-2 p-4 w-11/12 md:w-4/6">
+                <div className="cursor-pointer md:w-9/12 " onClick={() => { router.push(`/post/${post.slug}`); }}>
+                  <h2 className="text-xl font-semibold " >{post.title}</h2>
+                  <p className="mt-3  text-muted-foreground">{post.summary + '...'}</p>
+                </div>
+                <div className="pt-2 md:pt-0  md:w-3/12">
+                  <Image className="min-w-40 h-36 md:h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300} />
+                </div>
+              </div>
+            ))
+          }
 
-            <div className="cursor-pointer w-9/12" onClick={()=>{router.push(`/post/${post.slug}`);}}>
-            <h2 className="text-xl font-semibold " >{post.title}</h2>
-            <p className="mt-3  text-muted-foreground">{post.summary + '...'}</p>
-            </div>
-            <div className="w-3/12">
-            <Image className="min-w-40  h-24 object-cover rounded-md" src={post.thumbnailUrl} width={300} height={300}/>
-            </div>
-            </div>
-          ))
-        }
-        
 
-      </div>
-    </main>
+        </div>
+      </main>
     </>
   );
 }

@@ -61,7 +61,7 @@ function MyPosts() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center   gap-16 py-24 ">
                 <h4 className="text-2xl font-semibold">My Posts</h4>
-                <div className="flex shadow-md rounded-md">
+                <div className="flex shadow-md rounded-md w-11/12 md:w-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>

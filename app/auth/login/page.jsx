@@ -43,7 +43,7 @@ export default function Login() {
 
     return isloading || (!isloading && authUser) ? (<Loader/>) :  (
     <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
-            <div className="w-[30%]">
+            <div className="w-[90%] md:w-[30%]">
             <div className="flex justify-center items-end w-100">
             <h2 className="text-6xl font-bold mb-10">Login</h2>   
             <Image className="hidden md:flex" src={fastImage}  width={300} alt="write image" />

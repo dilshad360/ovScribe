@@ -61,7 +61,7 @@ function ManagePosts() {
             <NavBar />
             <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
             <h4 className="text-2xl font-semibold">All Posts</h4>
-                <div className="flex shadow-md rounded-md">
+                <div className="flex shadow-md rounded-md w-11/12 md:w-auto">
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -75,7 +75,7 @@ function ManagePosts() {
                             {posts.length > 0 &&
                                 posts.map((post, index) => (
                                     <TableRow key={index}>
-                                        <TableCell> {post.title} </TableCell>
+                                        <TableCell className="whitespace-nowrap" > {post.title} </TableCell>
                                         <TableCell className="p-0 flex items-center justify-center">
                                             <Image className="w-12 m-2 h-8 object-cover rounded-md" src={post.thumbnailUrl} width={100} height={100} alt=" " />
                                         </TableCell>

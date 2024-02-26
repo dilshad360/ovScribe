@@ -24,7 +24,6 @@ function Settings() {
 
     const [username, setUsername] = useState(null)
     const [phoneNumber, setPhoneNumber] = useState(null)
-    // const [userId, setUserId] = useState(null)
 
     const [profileImage, setProfileImage] = useState(null)
     const [profilePreview, setProfilePreview] = useState(null)
@@ -104,7 +103,8 @@ function Settings() {
     return (
         <>
             <NavBar />
-            <main className="flex min-h-screen flex-col  gap-16 py-24 px-96">
+            <main className="flex min-h-screen flex-col items-center py-24">
+                <div className="w-[90%] md:w-[50%] space-y-5">
                 <h3 className="text-4xl font-semibold">
                     Edit Profile
                 </h3>
@@ -205,6 +205,7 @@ function Settings() {
                         disabled
                         value={authUser.email}
                     ></Input>
+                </div>
                 </div>
             </main>
         </>

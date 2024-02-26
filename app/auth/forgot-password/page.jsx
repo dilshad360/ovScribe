@@ -42,7 +42,7 @@ export default function ForgotPassword() {
 
     return isloading || (!isloading && authUser) ? (<Loader/>) :  (
     <main className="flex min-h-screen flex-col items-center gap-16 py-24 ">
-            <div className="w-[30%]">
+            <div className="w-[90%] md:w-[30%]">
             <div className="">
             <Image className="hidden md:flex" src={badImage}  width={300} alt="write image" />
             <h2 className="text-4xl font-bold mb-10">Reset your password</h2>   
