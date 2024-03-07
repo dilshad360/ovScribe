@@ -20,6 +20,7 @@ import "@/styles/quillEditor.css";
 import { Sparkles, X } from "lucide-react";
 
 import dynamic from 'next/dynamic';
+import { quillModules } from "@/utils/quillModules";
 
 const ReactQuill = dynamic(
     () => {
@@ -47,8 +48,8 @@ function createPost() {
 
     const router = useRouter();
 
-    const sumbitHander = async () => {
-        if (!title && !content) return;
+    const sumbitHandler = async () => {
+        if (!title || !content || !summary || !thumbnail) return;
         try {
             // Upload image to Firebase Storage
             let thumbnailURL = "";
@@ -106,23 +107,6 @@ function createPost() {
 
     const handleEditorChange = (html) => {
         setContent(html);
-    };
-
-    const quillModules = {
-        toolbar: [
-            [{ header: "1" }, { header: "2" }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-            ],
-            ["clean"],
-        ],
-        clipboard: {
-            matchVisual: false,
-        },
     };
 
     return (
@@ -194,6 +178,7 @@ function createPost() {
                         className="flex flex-col gap-3"
                         onSubmit={(e) => {
                             e.preventDefault();
+                            sumbitHandler();
                         }}
                     >
                         <Label>Title</Label>
@@ -264,7 +249,7 @@ function createPost() {
                             rows="10"
                         />
 
-                        <Button className="" type="submit" onClick={sumbitHander}>
+                        <Button className="" type="submit">
                             Submit
                         </Button>
                     </form>

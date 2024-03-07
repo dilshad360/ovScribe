@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import withAuth from "../../middleware/auth";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 
 
@@ -86,9 +87,11 @@ function MyPosts() {
                                             <Button variant="ghost" size="icon" onClick={()=> deletePost(post.id)} >
                                                 <Trash className="h-4 w-4 text-red-600" />
                                             </Button>
-                                            {/* <Button variant="ghost"  size="icon" disabled  >
-                                                <Pencil className="h-4 w-4 " />
-                                            </Button> */}
+                                            <Link href={`/user/edit-post/${post.id}`}>
+                                            <Button variant="ghost"  size="icon"  >
+                                                <Pencil className="h-4 w-4 text-blue-600" />
+                                            </Button> 
+                                            </Link>
                                             <Button variant="ghost" size="icon" onClick={()=> {router.push(`/post/${post.slug}`);}} >
                                                 <Eye className="h-4 w-4" />
                                             </Button>
