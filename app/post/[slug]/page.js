@@ -2,7 +2,8 @@
 
 import { db } from "@/app/firebase/config";
 import NavBar from "@/components/NavBar";
-import TimeStamp from "@/components/TimeStamp";
+import TimeStamp from "@/components/post/TimeStamp";
+import UserProfile from "@/components/post/UserProfile";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -37,7 +38,7 @@ export default function Page({ params }) {
 
                 <Image className="min-w-full md:h-[360px] object-cover rounded-md mb-8" alt="" src={post[0].thumbnailUrl} width={300} height={300} />
                 
-
+                <UserProfile userId={post[0].owner} />
                 <TimeStamp seconds={post[0].createdAt.seconds} nanoseconds={post[0].createdAt.nanoseconds} />
                 <h3 className="text-3xl font-semibold">{post[0].title}</h3>
                 <div
