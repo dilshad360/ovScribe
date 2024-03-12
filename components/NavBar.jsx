@@ -49,27 +49,30 @@ const NavBar = () => {
               </Link>
 
               <div>
-                <Avatar
+                {!showProfilePanel ? (
+                  <Avatar
+                    className="cursor-pointer hover:shadow-md hover:scale-105 transition-all ease-in-out"
+                    onClick={() => {
+                      setShowProfilePanel(!showProfilePanel);
+                    }}
+                  >
+                    <AvatarImage src={authUser.profileImage} />
+                    <AvatarFallback className="bg-white border font-semibold">
+                      {authUser.username.substring(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                ) : (
+                  <Avatar 
                   className="cursor-pointer hover:shadow-md hover:scale-105 transition-all ease-in-out"
                   onClick={() => {
                     setShowProfilePanel(!showProfilePanel);
-                  }}
-                >
-                  <AvatarImage src={authUser.profileImage} />
-                  {authUser.username && (
-                    <>
-                      {!showProfilePanel ? (
-                        <AvatarFallback className="bg-white border font-semibold">
-                          {authUser.username.substring(0, 2).toUpperCase()}
-                        </AvatarFallback>
-                      ) : (
-                        <AvatarFallback className="bg-black border font-semibold text-white">
-                          <X />
-                        </AvatarFallback>
-                      )}
-                    </>
-                  )}
-                </Avatar>
+                  }} >
+                    <AvatarImage src="" />
+                  <AvatarFallback className="bg-black border font-semibold text-white">
+                    <X />
+                  </AvatarFallback>
+                  </Avatar>
+                )}
 
                 {showProfilePanel && (
                   <motion.div

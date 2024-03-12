@@ -142,7 +142,7 @@ function createPost() {
                                     handleAiImageSearch();
                                 }}
                             >
-                                Generate <Sparkles className="ml-1 w-4 text-white" />
+                                Generate <Sparkles className="ml-1 w-4 text-white animate-pulse" />
                             </Button>
                         </div>
 

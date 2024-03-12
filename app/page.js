@@ -54,7 +54,7 @@ export default function Home() {
                   }}
                 >
                   <h2 className="text-xl font-semibold ">{post.title}</h2>
-                  <p className="mt-3  text-muted-foreground">
+                  <p className="md:mt-3  text-muted-foreground">
                     {post.summary + "..."}
                   </p>
                 </div>
@@ -66,7 +66,7 @@ export default function Home() {
                   }}
                 >
                   <Image
-                    className="min-w-40 h-36 md:h-24 object-cover rounded-md"
+                    className="min-w-full h-36 md:h-24 object-cover rounded-md"
                     src={post.thumbnailUrl}
                     width={300}
                     height={300}
