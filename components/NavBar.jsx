@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "./ui";
 import { useAuth } from "@/app/firebase/auth";
 import Loader from "./loader";
-import { LogOut, Settings, SquarePen, UserRound, X } from "lucide-react";
+import { Bookmark, LogOut, Settings, SquarePen, UserRound, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react";
 import { Badge } from "./ui/badge";
@@ -21,12 +21,16 @@ const NavBar = () => {
   return (
     <div className="flex flex-row justify-between items-center gap-2 py-1 px-6">
       <Link href="/">
-        <h3 className="text-3xl font-bold">ovScribe</h3>
+        <h3 className="md:text-3xl font-bold">ovScribe</h3>
       </Link>
       <div>
         <div className="flex flex-row gap-3 m-4">
           {authUser ? (
             <>
+
+              <Link href="/user/bookmark" className="flex justify-center items-center">
+                <Bookmark className="mr-1 w-5 hover:scale-125 hover:fill-black transition-all ease-in-out " />
+              </Link>
 
               <Link href="/user/create-post">
                 <Button variant="outline"> <SquarePen className="mr-1 w-4" /> Write</Button>

@@ -20,7 +20,6 @@ const UserProfile = ({ userId }) => {
             if (docSnap.exists()) {
                 const userData = { ...docSnap.data(), id: docSnap.id };
                 setUserData(userData);
-                console.log(userData);
             } else {
                 console.log("No such user!");
             }

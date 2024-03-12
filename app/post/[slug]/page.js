@@ -2,6 +2,7 @@
 
 import { db } from "@/app/firebase/config";
 import NavBar from "@/components/NavBar";
+import AddBookmark from "@/components/post/AddBookmark";
 import TimeStamp from "@/components/post/TimeStamp";
 import UserProfile from "@/components/post/UserProfile";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -40,7 +41,10 @@ export default function Page({ params }) {
                 
                 <UserProfile userId={post[0].owner} />
                 <TimeStamp seconds={post[0].createdAt.seconds} nanoseconds={post[0].createdAt.nanoseconds} />
+                <div className="flex items-center gap-2 justify-between">
                 <h3 className="text-3xl font-semibold">{post[0].title}</h3>
+                <AddBookmark post={post[0]} />
+                </div>
                 <div
                 className="pt-6"
                     dangerouslySetInnerHTML={{__html: post[0].content}}
