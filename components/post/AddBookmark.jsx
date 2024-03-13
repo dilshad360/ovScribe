@@ -16,6 +16,9 @@ function AddBookmark({ post }) {
   }, []);
 
   const sumbitBookmark = async (item) => {
+    if (!authUser) {
+      toast.info("You must be logged in"); return;
+    }
     try {
       const docRef = await addDoc(collection(db, "bookmarks"), {
         owner: authUser.uid,
@@ -59,7 +62,7 @@ function AddBookmark({ post }) {
           onClick={() => {
             sumbitBookmark(post);
           }}
-          className="w-6 cursor-pointer hover:fill-current"
+          className="w-6 cursor-pointer hover:scale-110 ease-in-out transition-all"
         />
       )}
     </div>

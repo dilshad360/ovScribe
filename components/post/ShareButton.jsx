@@ -11,7 +11,7 @@ function ShareButton({ post }) {
                 title: `${post.title}`,
             }}
         >
-            <button><Send className="w-6 cursor-pointer hover:fill-current" /></button>
+            <button><Send className="w-6 cursor-pointer hover:scale-110 ease-in-out transition-all" /></button>
         </RWebShare>
     </div>)
 }
