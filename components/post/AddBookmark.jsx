@@ -45,7 +45,6 @@ function AddBookmark({ post }) {
       if(data.length > 0) {
         setBookmarked(true);
       }
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
