@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OvScribe
 
-## Getting Started
+OvScribe is a content publishing platform developed as a final year project for college. It facilitates the process of writing, approving, and publishing articles with distinct user roles for streamlined content management.
 
-First, run the development server:
+## Key Features
 
-```bash
+- **User Roles**:
+  - **Admin**: Manages all users and oversees the platform.
+  - **Approver**: Can approve or reject submitted posts.
+  - **Writer**: Can submit posts for approval.
+
+- **Rich Text Editor**: Provides a robust editor for writers to create and format their articles.
+- **Bookmarking**: Allows users to bookmark articles for easy access later.
+
+## Technologies Used
+
+- **Next.js**: For building the front-end application.
+- **Firebase**: Used for database management and authentication.
+- **TailwindCSS**: For styling the application.
+- **shadcn**: For UI components and design consistency.
+
+## Live Demo
+
+Check out the live demo of OvScribe [here](https://ovscribe.vercel.app/).
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/ovscribe.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd ovscribe
+   ```
+3. Install the dependencies:
+   ```sh
+   npm install
+   ```
+
+## Running the App
+
+To start the development server, run:
+```sh
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+This will start the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Building the App
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+To build the app for production, run:
+```sh
+npm run build
+```
+The build artifacts will be stored in the `out` directory.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deployment
 
-## Learn More
+You can deploy the app using any static site hosting service, such as Vercel, Netlify, or Firebase Hosting.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We welcome contributions from the community! Please follow these steps to contribute:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a Pull Request.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+Feel free to reach out with any questions or feedback. Let's make OvScribe even better together!
